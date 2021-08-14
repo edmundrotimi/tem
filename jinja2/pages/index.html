@@ -1,0 +1,814 @@
+{% extends 'base.html' %}
+
+{# get post count #}
+{% if allPost|default(0, true) != 0 %}
+    {% set postCount = allPost|length%}
+{% endif %}
+
+{% block bodyContent %}
+	<div class="section pt-5 pb-0">
+		<div class="container">
+			<div class="row justify-content-center mb-5">
+				<div class="col-lg-7 text-center">
+					<h2 class="heading">Trending</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="posts-slide-wrap">
+						<div class="posts-slide" id="posts-slide">
+							{% if trendSession and trendSession != 0 and trendSession|count >= 4  %}
+								{% for post in allPost if allPost %}
+									{% if post.id|string in trendSession  %}
+										<div class="item">
+											<div class="post-entry d-lg-flex">
+												<div class="me-lg-5 thumbnail mb-4 mb-lg-0">
+													<a href="/blog/{{post.slug}}/">
+														<img src="{{post.featured_img.url}}" alt="Image"
+															class="img-fluid">
+													</a>
+												</div>
+												<div class="content align-self-center">
+													<div class="post-meta mb-3">
+														<a href="/blog/{{post.slug}}/" class="category">{{post.category|title}}</a>, <a href="#"
+															class="category">TM Foundation</a> &mdash;
+														<span class="date">{{post.last_updated|dateformate}}</span>
+													</div>
+													<h2 class="heading"><a href="#">{{post.title|truncate(65, true)}}</a></h2>
+													<p>{{post.intro_text}}</p>
+													<a href="#" class="post-author d-flex align-items-center">
+														<div class="author-pic">
+															<img src="{{ static('images/author.png') }}" alt="Image">
+														</div>
+														<div class="text">
+															<strong>Temitope Momoh</strong>
+															<span>CEO and Founder</span>
+														</div>
+													</a>
+												</div>
+											</div>
+										</div>
+									{% endif %}								
+								{% endfor %}
+							{% elif trending %}
+								{% for trend in trending %}
+									<div class="item">
+										<div class="post-entry d-lg-flex">
+											<div class="me-lg-5 thumbnail mb-4 mb-lg-0">
+												<a href="/blog/{{trend.slug}}/">
+													<img src="{{trend.featured_img.url}}" alt="Image"
+														class="img-fluid">
+												</a>
+											</div>
+											<div class="content align-self-center">
+												<div class="post-meta mb-3">
+													<a href="#" class="category">{{trend.category|title}}</a>, <a href="#"
+														class="category">TM Foundation</a> &mdash;
+													<span class="date">{{trend.last_updated|dateformate}}</span>
+												</div>
+												<h2 class="heading"><a href="/blog/{{trend.slug}}/">{{trend.title|truncate(65, true)}}</a></h2>
+												<p>{{trend.intro_text}}</p>
+												<a href="#" class="post-author d-flex align-items-center">
+													<div class="author-pic">
+														<img src="{{ static('images/author.png') }}" alt="Image">
+													</div>
+													<div class="text">
+														<strong>Temitope Momoh</strong>
+														<span>CEO and Founder</span>
+													</div>
+												</a>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="item">
+									<div class="post-entry d-lg-flex">
+										<div class="me-lg-5 thumbnail mb-4 mb-lg-0">
+											<a href="#">
+												<img src="{{ static('images/xpost_lg_1.jpg.pagespeed.ic.vC5886c_pL.jpg') }}" alt="Image"
+													class="img-fluid">
+											</a>
+										</div>
+										<div class="content align-self-center">
+											<div class="post-meta mb-3">
+												<a href="#" class="category">Business</a>, <a href="#"
+													class="category">Travel</a> &mdash;
+												<span class="date">July 2, 2020</span>
+											</div>
+											<h2 class="heading"><a href="#">Your most unhappy customers are your
+													greatest source of learning.</a></h2>
+											<p>Far far away, behind the word mountains, far from the countries Vokalia and
+												Consonantia, there live the blind texts. Separated they live in
+												Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+											</p>
+											<a href="#" class="post-author d-flex align-items-center">
+												<div class="author-pic">
+													<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+												</div>
+												<div class="text">
+													<strong>Sergy Campbell</strong>
+													<span>CEO and Founder</span>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="item">
+									<div class="post-entry d-lg-flex">
+										<div class="me-lg-5 thumbnail mb-4 mb-lg-0">
+											<a href="#">
+												<img src="{{ static('images/xpost_lg_2.jpg.pagespeed.ic.YbC8FwTKmr.jpg') }}" alt="Image"
+													class="img-fluid">
+											</a>
+										</div>
+										<div class="content align-self-center">
+											<div class="post-meta mb-3">
+												<a href="#" class="category">Business</a>, <a href="#"
+													class="category">Travel</a> &mdash;
+												<span class="date">July 2, 2020</span>
+											</div>
+											<h2 class="heading"><a href="#">Your most unhappy customers are your
+													greatest source of learning.</a></h2>
+											<p>Far far away, behind the word mountains, far from the countries Vokalia and
+												Consonantia, there live the blind texts. Separated they live in
+												Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+											</p>
+											<a href="#" class="post-author d-flex align-items-center">
+												<div class="author-pic">
+													<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+												</div>
+												<div class="text">
+													<strong>Sergy Campbell</strong>
+													<span>CEO and Founder</span>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="item">
+									<div class="post-entry d-lg-flex">
+										<div class="me-lg-5 thumbnail mb-4 mb-lg-0">
+											<a href="#">
+												<img src="{{ static('images/xpost_lg_3.jpg.pagespeed.ic.qhXWgmNnIn.jpg') }}" alt="Image"
+													class="img-fluid">
+											</a>
+										</div>
+										<div class="content align-self-center">
+											<div class="post-meta mb-3">
+												<a href="#" class="category">Business</a>, <a href="#"
+													class="category">Travel</a> &mdash;
+												<span class="date">July 2, 2020</span>
+											</div>
+											<h2 class="heading"><a href="#">Your most unhappy customers are your
+													greatest source of learning.</a></h2>
+											<p>Far far away, behind the word mountains, far from the countries Vokalia and
+												Consonantia, there live the blind texts. Separated they live in
+												Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+											</p>
+											<a href="#" class="post-author d-flex align-items-center">
+												<div class="author-pic">
+													<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+												</div>
+												<div class="text">
+													<strong>Sergy Campbell</strong>
+													<span>CEO and Founder</span>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="item">
+									<div class="post-entry d-lg-flex">
+										<div class="me-lg-5 thumbnail mb-4 mb-lg-0">
+											<a href="#">
+												<img src="{{ static('images/xpost_lg_4.jpg.pagespeed.ic.oJIp7wddWl.jpg') }}" alt="Image"
+													class="img-fluid">
+											</a>
+										</div>
+										<div class="content align-self-center">
+											<div class="post-meta mb-3">
+												<a href="#" class="category">Business</a>, <a href="#"
+													class="category">Travel</a> &mdash;
+												<span class="date">July 2, 2020</span>
+											</div>
+											<h2 class="heading"><a href="#">Your most unhappy customers are your
+													greatest source of learning.</a></h2>
+											<p>Far far away, behind the word mountains, far from the countries Vokalia and
+												Consonantia, there live the blind texts. Separated they live in
+												Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+											</p>
+											<a href="#" class="post-author d-flex align-items-center">
+												<div class="author-pic">
+													<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+												</div>
+												<div class="text">
+													<strong>Sergy Campbell</strong>
+													<span>CEO and Founder</span>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+					
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row g-5">
+				{% for post in posts if posts %}
+					<div class="col-lg-4">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="/blog/{{post.slug}}/">
+									<img src="{{post.featured_img.url}}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">{{post.category|title}}</a>, <a href="#" class="category">TM Foundation</a>
+									&mdash;
+									<span class="date">{{post.last_updated|dateformate}}</span>
+								</div>
+								<h2 class="heading mb-3"><a href="/blog/{{post.slug}}/">{{post.title|truncate(65, true)}}</a></h2>
+								<p>{{post.intro_text}}</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/author.png') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Temitope Momoh</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% else %}
+					<div class="col-lg-4">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_2.jpg.pagespeed.ic.tehDa3FPWy.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest
+										source of learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_3.jpg.pagespeed.ic.MzyTwPvJuu.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest
+										source of learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_4.jpg.pagespeed.ic.5BNsTZBCHP.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest source of
+										learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_4.jpg.pagespeed.ic.5BNsTZBCHP.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest source of
+										learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_5.jpg.pagespeed.ic.aehNfINE2q.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest source of
+										learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_6.jpg.pagespeed.ic.Kuzv9hw150.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest source of
+										learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row justify-content-center mb-5">
+				<div class="col-lg-7 text-center">
+					<h2 class="heading">Most Popular Posts</h2>
+				</div>
+			</div>
+		</div>
+		<div class="most-popular-slider-wrap px-3 px-md-0">
+			<div id="most-popular-nav">
+				<span class="prev" data-controls="prev">Prev</span>
+				<span class="next" data-controls="next">Next</span>
+			</div>
+			<div class="most-popular-slider" id="most-popular-center">
+				{% for popular in popular %}
+					<div class="item">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="/blog/{{popular.slug}}/">
+									<img src="{{popular.featured_img.url}}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">{{popular.category|title}}</a>, <a href="#" class="category">TM Foundation</a>
+									&mdash;
+									<span class="date">{{popular.last_updated|dateformate}}</span>
+								</div>
+								<h2 class="heading mb-3"><a href="/blog/{{popular.slug}}/">{{popular.title|truncate(65, true)}}</a></h2>
+								<p>{{popular.intro_text}}</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/author.png') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Temitope Momoh</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% else %}
+					<div class="item">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_7.jpg.pagespeed.ic.w5W5PuCxbQ.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest
+										source of learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_2.jpg.pagespeed.ic.tehDa3FPWy.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest
+										source of learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_3.jpg.pagespeed.ic.MzyTwPvJuu.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest
+										source of learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_4.jpg.pagespeed.ic.5BNsTZBCHP.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest
+										source of learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_5.jpg.pagespeed.ic.aehNfINE2q.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest
+										source of learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="post-entry d-block small-post-entry-v">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="{{ static('images/ximg_6.jpg.pagespeed.ic.Kuzv9hw150.jpg') }}" alt="Image" class="img-fluid">
+								</a>
+							</div>
+							<div class="content">
+								<div class="post-meta mb-1">
+									<a href="#" class="category">Business</a>, <a href="#" class="category">Travel</a>
+									&mdash;
+									<span class="date">July 2, 2020</span>
+								</div>
+								<h2 class="heading mb-3"><a href="#">Your most unhappy customers are your greatest
+										source of learning.</a></h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+									there live the blind texts.</p>
+								<a href="#" class="post-author d-flex align-items-center">
+									<div class="author-pic">
+										<img src="{{ static('images/xperson_1.jpg.pagespeed.ic.ku-D0yMWz5.jpg') }}" alt="Image">
+									</div>
+									<div class="text">
+										<strong>Sergy Campbell</strong>
+										<span>CEO and Founder</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row g-5">
+				<div class="col-lg-6">
+					<div class="row mb-4">
+						<div class="col-12">
+							<h2 class="h4 fw-bold">Purpose Discovery</h2>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						{% for purpose in purpose %}
+							<div class="col-lg-12">
+								<div class="post-entry d-md-flex xsmall-horizontal mb-5">
+									<div class="me-md-3 thumbnail mb-3 mb-md-0">
+										<img src="{{purpose.featured_img.url}}" alt="Image"
+											class="img-fluid">
+									</div>
+									<div class="content">
+										<div class="post-meta mb-1">
+											<a href="#" class="category">{{purpose.category|title}}</a>, <a href="#"
+												class="category">TM Foundation</a> &mdash;
+											<span class="date">{{purpose.last_updated|dateformate}}</span>
+										</div>
+										<h2 class="heading"><a href="/blog/{{purpose.slug}}/">{{purpose.title|truncate(65, true)}}</a></h2>
+										<a href="#" class="post-author d-flex align-items-center">
+											<div class="author-pic">
+												<img src="{{ static('images/author.png') }}" alt="Image">
+											</div>
+											<div class="text">
+												<strong>Temitope Momoh</strong>
+												<span>Author, {{postCount}} published post</span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						{% else %}
+							<div class="col-lg-12">
+								<div class="post-entry d-md-flex xsmall-horizontal mb-5">
+									<div class="me-md-3 thumbnail mb-3 mb-md-0">
+										<img src="{{ static('images/ximg_2.jpg.pagespeed.ic.tehDa3FPWy.jpg') }}" alt="Image" class="img-fluid">
+									</div>
+									<div class="content">
+										<div class="post-meta mb-1">
+											<a href="#" class="category">Blog</a>, <a href="#" class="category">Post</a>
+											&mdash;
+											<span class="date">{% now 'F d, Y' %}</span>
+										</div>
+										<h2 class="heading"><a href="#">Not Found</a></h2>
+										<p>No post category listing found!</p>
+										<a href="#" class="post-author d-flex align-items-center">
+											<div class="author-pic">
+												<img src="{{ static('images/author.png') }}" alt="Image">
+											</div>
+											<div class="text">
+												<strong>TM</strong>
+												<span>Author, {{postCount}} published post</span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="row mb-4">
+						<div class="col-12">
+							<h2 class="h4 fw-bold">Spiritual Upliftment</h2>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						{% for upliftment in upliftment %}
+							<div class="col-lg-12">
+								<div class="post-entry d-md-flex xsmall-horizontal mb-5">
+									<div class="me-md-3 thumbnail mb-3 mb-md-0">
+										<img src="{{upliftment.featured_img.url}}" alt="Image"
+											class="img-fluid">
+									</div>
+									<div class="content">
+										<div class="post-meta mb-1">
+											<a href="#" class="category">{{upliftment.category}}</a>, <a href="#"
+												class="category">TM Foundation</a> &mdash;
+											<span class="date">{{upliftment.last_updated|dateformate}}</span>
+										</div>
+										<h2 class="heading"><a href="/blog/{{upliftment.slug}}/">{{upliftment.title}}</a></h2>
+										<a href="#" class="post-author d-flex align-items-center">
+											<div class="author-pic">
+												<img src="{{ static('images/author.png') }}" alt="Image">
+											</div>
+											<div class="text">
+												<strong>Temitope Momoh</strong>
+												<span>Author, {{postCount}} published post</span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						{% else %}
+							<div class="col-lg-12">
+								<div class="post-entry d-md-flex xsmall-horizontal mb-5">
+									<div class="me-md-3 thumbnail mb-3 mb-md-0">
+										<img src="{{ static('images/ximg_2.jpg.pagespeed.ic.tehDa3FPWy.jpg') }}" alt="Image" class="img-fluid">
+									</div>
+									<div class="content">
+										<div class="post-meta mb-1">
+											<a href="#" class="category">Blog</a>, <a href="#" class="category">Post</a>
+											&mdash;
+											<span class="date">{% now 'F d, Y' %}</span>
+										</div>
+										<h2 class="heading"><a href="#">Not Found</a></h2>
+										<p>No post category listing found!</p>
+										<a href="#" class="post-author d-flex align-items-center">
+											<div class="author-pic">
+												<img src="{{ static('images/author.png') }}" alt="Image">
+											</div>
+											<div class="text">
+												<strong>Temitope Momoh</strong>
+												<span>Author, {{postCount}} published post</span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="py-5 bg-light mx-md-3 sec-subscribe">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 class="h4 fw-bold">Subscribe to newsletter</h2>
+				</div>
+			</div>
+			<script type="text/javascript" src="https://sgwidget.leaderapps.co/js/sendgrid-widget.js"></script>
+			<div id="sendgrid-subscription-widget" class="sendgrid-subscription-widget" >
+				<form  id="sg-widget" data-token="43774bfc98ebf7798ed5f095eeeaa9af" onsubmit="return false;" class="row">
+					<div class="col-md-8">
+						<div class="mb-3 mb-md-0">
+							<input id="email" type="email" name="email" class="form-control" placeholder="Enter your email">
+						</div>
+					</div>
+					<div class="col-md-4 d-grid">
+						<input type="submit" id="sg-submit-btn" class="btn btn-primary" value="Subscribe">
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<h6 class="h6 fw-bold" style="font-size:14px; margin-top:5px;">
+								<p class="sg-response" id="sg-response"></p>
+							</h6>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock bodyContent %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{# get post count #}
+{% if allPost|default(0, true) != 0 %}
+    {% set postCount = allPost|length%}
+{% endif %}
+
+
+{% block bodyContent %}
+	<div class="section post-section pt-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="text-center">
+						<img src="{{ static('images/author.png') }}" alt="Image"
+							class="author-pic img-fluid rounded-circle mx-auto">
+					</div>
+					<span class="d-block text-center">Temitope Momoh</span>
+					<span class="date d-block text-center small text-uppercase text-black-50 mb-5">{% now 'M d, Y' %}</span>
+					<h2 class="heading text-center">Login Suspended?</h2>
+					<p class="lead mb-4 text-center">Too many failed login.</p>
+					<img src="{{ static('images/ximg_2.jpg.pagespeed.ic.tehDa3FPWy.jpg') }}" alt="Image" class="img-fluid rounded mb-4">
+					<br>
+					<p style="text-align:justify">
+						Hi, login to your account has been tempoarily suspended due to too many failed attempts, 
+						kindly try again later. If this was a mistake kindly contact support using
+						<a href="mailto:contact@temitopemomoh.com">Support Link</a>.
+					</p>
+                    <p style="text-align:justify">
+						Feeling stuck? Knowing you have more to give to the world but unsure about where to begin? 
+						Even the strongest amongst us can feel lost, unsure, ambivalent, or disenfranchised by 
+						setbacks. As a Transformation Coach, I can help you connect with your true identity, 
+						leverage everything you have on the inside of you. 
+						<a href="mailto:contact@temitopemomoh.com">Contact Me</a>.
+					</p>
+                    <div class="row mt-5 pt-5 border-top">
+						<div class="col-12">
+							<span class="fw-bold text-black small mb-1">Share</span>
+							<ul class="social list-unstyled">
+								<li><a href="#"><span class="icon-facebook"></span></a></li>
+								<li><a href="#"><span class="icon-twitter"></span></a></li>
+								<li><a href="#"><span class="icon-linkedin"></span></a></li>
+								<li><a href="#"><span class="icon-pinterest"></span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="py-5 bg-light mx-md-3 sec-subscribe">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 class="h4 fw-bold">Subscribe to newsletter</h2>
+				</div>
+			</div>
+			<script type="text/javascript" src="https://sgwidget.leaderapps.co/js/sendgrid-widget.js"></script>
+			<div id="sendgrid-subscription-widget" class="sendgrid-subscription-widget" >
+				<form  id="sg-widget" data-token="43774bfc98ebf7798ed5f095eeeaa9af" onsubmit="return false;" class="row">
+					<div class="col-md-8">
+						<div class="mb-3 mb-md-0">
+							<input id="email" type="email" name="email" class="form-control" placeholder="Enter your email">
+						</div>
+					</div>
+					<div class="col-md-4 d-grid">
+						<input type="submit" id="sg-submit-btn" class="btn btn-primary" value="Subscribe">
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<h6 class="h6 fw-bold" style="font-size:14px; margin-top:5px;">
+								<p class="sg-response" id="sg-response"></p>
+							</h6>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock bodyContent %}

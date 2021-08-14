@@ -1,0 +1,41 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">
+            <img src="{% static 'images/logo.jpeg' %}" width="50px" height="50px" class="brand_img"> 
+             TM 
+        </a>
+    </h1>
+{% endblock %}
+
+{% block responsive %}
+    {{block.super}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Life Transformation Coach">
+    <meta name="description" content="Feeling stuck? Knowing you have more to give to the world but unsure about where to begin? Even the strongest amongst us can feel lost, unsure, ambivalent, or disenfranchised by setbacks.
+        As a Transformation Coach, I can help you connect with your true identity, leverage everything you have on the inside of you and he">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="TopeMomoh.com">
+    <meta name="keywords"
+        content="TopeMomoh.com, TopeMomoh, School of Purpose, Learn about purpose, discover purpose, find my purpose, study on purpose" />
+    
+    <!-- Favicon -->        
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon/android-chrome-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#262b2c">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+{% endblock extrastyle %}

@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{# get post count #}
+{% if allPost|default(0, true) != 0 %}
+    {% set postCount = allPost|length%}
+{% endif %}
+
+{# body content #}
+{% block bodyContent %}
+	<div class="section pt-5 pb-0">
+		<div class="container">
+			<div class="row mb-5 justify-content-center">
+				<div class="col-lg-9">
+					<span class="fw-normal text-uppercase d-block mb-1">Categories</span>
+					<h2 class="heading">'Spiritual Upliftment''</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+                {% for post in posts if posts %}
+                    <div class="col-lg-9">
+                        <div class="post-entry d-md-flex small-horizontal mb-5">
+                            <div class="me-md-5 thumbnail mb-3 mb-md-0">
+                                <img src="{{post.featured_img.url}}" alt="Image" class="img-fluid">
+                            </div>
+                            <div class="content">
+                                <div class="post-meta mb-3">
+                                    <a href="#" class="category">{{post.category|title}}</a>, <a href="#" class="category">TM Foundation</a>
+                                    &mdash;
+                                    <span class="date">{{post.last_updated|dateformate}}</span>
+                                </div>
+                                <h2 class="heading"><a href="/blog/{{post.slug}}/">{{post.title|truncate(65, true)}}</a></h2>
+                                <p>{{post.intro_text}}</p>
+                                <a href="#" class="post-author d-flex align-items-center">
+                                    <div class="author-pic">
+                                        <img src="{{ static('images/author.png') }}" alt="Image">
+                                    </div>
+                                    <div class="text">
+                                        <strong>Temitope Momoh</strong>
+                                        <span>Author, {{postCount}} published post</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-lg-9">
+                        <div class="post-entry d-md-flex small-horizontal mb-5">
+                            <div class="me-md-5 thumbnail mb-3 mb-md-0">
+                                <img src="{{ static('images/ximg_2.jpg.pagespeed.ic.tehDa3FPWy.jpg') }}" alt="Image" class="img-fluid">
+                            </div>
+                            <div class="content">
+                                <div class="post-meta mb-3">
+                                    <a href="#" class="category">Blog</a>, <a href="#" class="category">Post</a>
+                                    &mdash;
+                                    <span class="date">{%now 'F d, Y' %}</span>
+                                </div>
+                                <h2 class="heading"><a href="#">Not Found</a></h2>
+                                <p>No post listing found!</p>
+                                <a href="#" class="post-author d-flex align-items-center">
+                                    <div class="author-pic">
+                                        <img src="{{ static('images/author.png') }}" alt="Image">
+                                    </div>
+                                    <div class="text">
+                                        <strong>TM</strong>
+                                        <span>Author, {{postCount}} published post</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+			</div>
+
+            {% if is_paginated %}
+                <div class="row align-items-center justify-content-center py-5">
+                    <div class="col-lg-6 text-center">
+                        <div class="custom-pagination">
+                            {% set pagesNum = paginator.page_range|count %}
+                            {% set starterCount = 1 %}
+                            {% set currentCount = 0 %}
+                            {% set controller = 6 %}
+                            {% if pagesNum >= 5 %}
+                                {% set numberRange = 5 %}
+                            {% else %}
+                                {% set numberRange = pagesNum + 1 %}
+                            {% endif %}
+
+                            {% if currentCount != controller %}
+                                {% for k in range(starterCount, numberRange)  %}
+                                    {% if k <= pagesNum %}
+                                        {% if page_obj.number == k %}
+                                            <a href="?page={{k}}" class="active">{{k}}</a>
+                                            {% if not loop.first %}
+                                                {% set starterCount = starterCount + 1 %}
+                                                {% set numberRange = numberRange + 1 %}
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="?page={{k}}">{{k}}</a>
+                                        {% endif %}
+                                        {% set currentCount = currentCount + 1 %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% elif starterCount == controller and numberRange -  1 > pagesNum %}
+                                {% set controller = controller + 1 %}
+                            {% endif %}            
+                        </div>
+                    </div>
+			    </div>
+            {% endif %}
+		</div>
+	</div>
+	<div class="py-5 bg-light mx-md-3 sec-subscribe">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 class="h4 fw-bold">Subscribe to newsletter</h2>
+				</div>
+			</div>
+			<script type="text/javascript" src="https://sgwidget.leaderapps.co/js/sendgrid-widget.js"></script>
+			<div id="sendgrid-subscription-widget" class="sendgrid-subscription-widget" >
+				<form  id="sg-widget" data-token="43774bfc98ebf7798ed5f095eeeaa9af" onsubmit="return false;" class="row">
+					<div class="col-md-8">
+						<div class="mb-3 mb-md-0">
+							<input id="email" type="email" name="email" class="form-control" placeholder="Enter your email">
+						</div>
+					</div>
+					<div class="col-md-4 d-grid">
+						<input type="submit" id="sg-submit-btn" class="btn btn-primary" value="Subscribe">
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<h6 class="h6 fw-bold" style="font-size:14px; margin-top:5px;">
+								<p class="sg-response" id="sg-response"></p>
+							</h6>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock bodyContent %}
+	
