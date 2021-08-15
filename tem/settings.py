@@ -210,15 +210,15 @@ if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
     # update installed apps
-    local_env_apps = ['django_extensions', 'debug_toolbar']
-    for i in range(len(local_env_apps)):
-        INSTALLED_APPS.insert(31+i, local_env_apps[i])
+    # local_env_apps = ['django_extensions', 'debug_toolbar']
+    # for i in range(len(local_env_apps)):
+    #     INSTALLED_APPS.insert(31+i, local_env_apps[i])
 
-    # update middleware
-    MIDDLEWARE.insert(6, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+    # # update middleware
+    # MIDDLEWARE.insert(6, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
-    # set internal ips
-    INTERNAL_IPS = ['127.0.0.1', ]
+    # # set internal ips
+    # INTERNAL_IPS = ['127.0.0.1', ]
 
 else:
     # smtp email settings
