@@ -2,7 +2,9 @@
 
 {# get post count #}
 {% if allPost|default(0, true) != 0 %}
-    {% set postCount = allPost|length%}
+    {% set postCount = allPost|length %}
+{% else %}
+	{% set postCount = 0 %}
 {% endif %}
 
 {% block bodyContent %}

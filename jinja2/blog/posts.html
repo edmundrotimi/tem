@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {# get post count #}
-{% if post|default(0, true) != 0 %}
-    {% set postCount = posts|length%}
+{% if allPost|default(0, true) != 0 %}
+    {% set postCount = allPost|length %}
+{% else %}
+	{% set postCount = 0 %}
 {% endif %}
 
 {# body content #}
